@@ -5,10 +5,8 @@ import folium
 from folium.features import DivIcon
 from streamlit_folium import st_folium
 
-# =========================
 # CONFIG
-# =========================
-st.set_page_config(page_title="TouchBox PRO", layout="wide")
+st.set_page_config(layout="wide")
 
 BASE_DIR = Path(__file__).resolve().parent
 ZONAS_FILE = BASE_DIR / "zonas.json"
@@ -21,22 +19,33 @@ def read_json(path):
 zonas = read_json(ZONAS_FILE)
 
 # =========================
-# ESTILO (🔥 etiquetas tipo tu sistema)
+# 🎯 ICONO TIPO EQUIPO (IGUAL VISUAL)
 # =========================
-def etiqueta_html(nombre, estado):
-    color = "#22c55e" if estado == "ok" else "#ef4444"
+def icono_equipo():
+    return """
+    <div style="text-align:center;">
+        <div style="
+            font-size:20px;
+            filter: drop-shadow(0px 2px 3px rgba(0,0,0,0.5));
+        ">📡</div>
+    </div>
+    """
 
+# =========================
+# 🏷️ ETIQUETA NEGRA (CLON)
+# =========================
+def etiqueta(nombre):
     return f"""
     <div style="
-        background: #111827;
-        color: white;
-        padding: 4px 8px;
-        border-radius: 8px;
-        font-size: 11px;
-        font-weight: bold;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-        border-left: 4px solid {color};
-        white-space: nowrap;
+        background:#1f2937;
+        color:white;
+        padding:4px 8px;
+        border-radius:10px;
+        font-size:11px;
+        font-weight:600;
+        white-space:nowrap;
+        box-shadow:0 2px 6px rgba(0,0,0,0.4);
+        margin-top:-5px;
     ">
         {nombre}
     </div>
@@ -45,7 +54,7 @@ def etiqueta_html(nombre, estado):
 # =========================
 # UI
 # =========================
-st.title("📡 TouchBox - Vista Operativa")
+st.title("TouchBox - Vista Operativa")
 
 col1, col2 = st.columns([4,1])
 
@@ -53,10 +62,11 @@ col1, col2 = st.columns([4,1])
 # MAPA
 # =========================
 with col1:
+
     mapa = folium.Map(
         location=[-12.0, -77.0],
         zoom_start=19,
-        tiles="CartoDB dark_matter"  # 🔥 estilo oscuro PRO
+        tiles="CartoDB positron"  # similar a tu fondo
     )
 
     total = 0
@@ -65,16 +75,15 @@ with col1:
     for z in zonas:
         coords = z.get("coords", [])
 
-        # 🔷 ZONA
-        if coords:
-            folium.Polygon(
-                locations=coords,
-                color="#3b82f6",
-                fill=True,
-                fill_opacity=0.15
-            ).add_to(mapa)
+        # 🔷 ZONA (colores como tu sistema)
+        folium.Polygon(
+            locations=coords,
+            color="#4f46e5",
+            fill=True,
+            fill_color="#60a5fa",
+            fill_opacity=0.25
+        ).add_to(mapa)
 
-        # 🔹 TAGS
         for t in z.get("tags", []):
             lat = t.get("lat")
             lng = t.get("lng")
@@ -88,29 +97,29 @@ with col1:
             if estado == "ok":
                 ok += 1
 
-            # 🔥 ICONO BASE (tipo equipo)
-            folium.CircleMarker(
-                location=[lat, lng],
-                radius=6,
-                color="#22c55e" if estado == "ok" else "#ef4444",
-                fill=True
-            ).add_to(mapa)
+            # 🔴 o 🔵 color
+            color = "red" if estado != "ok" else "blue"
 
-            # 🔥 ETIQUETA FLOTANTE (CLAVE)
+            # 🔥 ICONO (tipo torre)
             folium.Marker(
                 location=[lat, lng],
-                icon=DivIcon(
-                    html=etiqueta_html(nombre, estado)
-                )
+                icon=DivIcon(html=icono_equipo())
+            ).add_to(mapa)
+
+            # 🔥 ETIQUETA NEGRA
+            folium.Marker(
+                location=[lat, lng],
+                icon=DivIcon(html=etiqueta(nombre))
             ).add_to(mapa)
 
     st_folium(mapa, width=1200, height=650)
 
 # =========================
-# PANEL DERECHO (igual al tuyo)
+# PANEL DERECHO (CLON)
 # =========================
 with col2:
-    st.subheader("📊 Estado")
+
+    st.markdown("### TouchBox ACEDIM")
 
     error = total - ok
 
@@ -118,8 +127,14 @@ with col2:
     st.metric("Operativos", ok)
     st.metric("Inoperativos", error)
 
+    st.markdown("#### Red")
+    st.metric("Wi-Fi", 1)
+    st.metric("LAN", total-1)
+
     st.divider()
 
-    st.button("💾 Guardar")
-    st.button("📥 Exportar Excel")
-    st.button("📄 Exportar PDF")
+    st.button("Editar")
+    st.button("Guardar")
+
+    st.button("Exportar Excel")
+    st.button("Exportar PDF")
