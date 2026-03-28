@@ -1,0 +1,382 @@
+[
+  {
+    "color": "#0084ff",
+    "coords": [
+      [
+        -76.1655258230341,
+        -13.79353975539281
+      ],
+      [
+        -76.16607881274788,
+        -13.792583482531395
+      ],
+      [
+        -76.16625147382759,
+        -13.792677384669394
+      ],
+      [
+        -76.1657033168069,
+        -13.793634824346938
+      ]
+    ],
+    "id": "zona-1757203055854",
+    "nombre": "NAVE 2",
+    "tags": [
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.793434333640311,
+        "lng": -76.16564869880678,
+        "mac": "",
+        "nombre": "FORMULA 9",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.79340177290781,
+        "lng": -76.16579085588457,
+        "mac": "",
+        "nombre": "FORMULA 5",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.793242876467987,
+        "lng": -76.16587802767755,
+        "mac": "",
+        "nombre": "POLYBEND 1",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.79309439936906,
+        "lng": -76.16582170128822,
+        "mac": "",
+        "nombre": "EURA 3",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Inoperativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.79309439936906,
+        "lng": -76.16596519947053,
+        "mac": "",
+        "nombre": "POLYBEND 4",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.792958946494677,
+        "lng": -76.16604566574097,
+        "mac": "",
+        "nombre": "ROBOMASTER 3",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.792914663807158,
+        "lng": -76.16593569517137,
+        "mac": "",
+        "nombre": "FORMULA 8",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.792800049753376,
+        "lng": -76.166138201952,
+        "mac": "",
+        "nombre": "SHERLINE 2",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.792763581633547,
+        "lng": -76.16603761911394,
+        "mac": "",
+        "nombre": "RAXE 2",
+        "tipo": "LAN"
+      }
+    ]
+  },
+  {
+    "color": "#22c55e",
+    "coords": [
+      [
+        -76.1657033168069,
+        -13.793634824346938
+      ],
+      [
+        -76.16587644808287,
+        -13.79372755662965
+      ],
+      [
+        -76.16642237889347,
+        -13.792770331757927
+      ],
+      [
+        -76.16625147382759,
+        -13.792677384669394
+      ]
+    ],
+    "id": "zona-1757203085879",
+    "nombre": "NAVE 3",
+    "tags": [
+      {
+        "estado": "Inoperativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.793468196797297,
+        "lng": -76.1658538877964,
+        "mac": "",
+        "nombre": "FORMULA 11",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.79345387007765,
+        "lng": -76.16599738597871,
+        "mac": "",
+        "nombre": "EURA 3",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.793281949373059,
+        "lng": -76.16596654057503,
+        "mac": "",
+        "nombre": "RAXE 3",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.793123052851648,
+        "lng": -76.16618648171425,
+        "mac": "",
+        "nombre": "EURA 1",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.79314258931503,
+        "lng": -76.16605103015901,
+        "mac": "",
+        "nombre": "FORMULA 7",
+        "tipo": "WIFI"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.793001926742177,
+        "lng": -76.16613686084749,
+        "mac": "",
+        "nombre": "FORMULA 1",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Inoperativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.792923780831748,
+        "lng": -76.16629377007486,
+        "mac": "",
+        "nombre": "POLYBEND 2",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.792861264084557,
+        "lng": -76.16621330380441,
+        "mac": "",
+        "nombre": "BARWISER 28 1",
+        "tipo": "LAN"
+      }
+    ]
+  },
+  {
+    "color": "#0084ff",
+    "coords": [
+      [
+        -76.16642237889347,
+        -13.792770331757927
+      ],
+      [
+        -76.16658797508038,
+        -13.792860391565865
+      ],
+      [
+        -76.16604525417384,
+        -13.793817972228531
+      ],
+      [
+        -76.16587644808287,
+        -13.79372755662965
+      ]
+    ],
+    "id": "zona-1757203227127",
+    "nombre": "NAVE 4",
+    "tags": [
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.792986297562194,
+        "lng": -76.16636618971825,
+        "mac": "",
+        "nombre": "BARWISER 22",
+        "tipo": "LAN"
+      }
+    ]
+  },
+  {
+    "color": "#22c55e",
+    "coords": [
+      [
+        -76.16607881274788,
+        -13.792583482531395
+      ],
+      [
+        -76.16591289639474,
+        -13.792495280291076
+      ],
+      [
+        -76.1653643846512,
+        -13.793456474935828
+      ],
+      [
+        -76.1655258230341,
+        -13.79353975539281
+      ]
+    ],
+    "id": "zona-1757203616784",
+    "nombre": "NAVE 1",
+    "tags": [
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.793292368813301,
+        "lng": -76.16550385951996,
+        "mac": "",
+        "nombre": "FORMULA 6",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.793400470478415,
+        "lng": -76.16555884480478,
+        "mac": "",
+        "nombre": "MEP",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.793248086189038,
+        "lng": -76.1656540632248,
+        "mac": "",
+        "nombre": "POLYBEND 5",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.793130867437199,
+        "lng": -76.1657238006592,
+        "mac": "",
+        "nombre": "FORMULA 2",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.792813074080499,
+        "lng": -76.16577073931694,
+        "mac": "",
+        "nombre": "EURA 2",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.793098306662358,
+        "lng": -76.16560980677606,
+        "mac": "",
+        "nombre": "RAXE 4",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.792914663807158,
+        "lng": -76.16579622030258,
+        "mac": "",
+        "nombre": "ROBOMASTER 2",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.7927245086417,
+        "lng": -76.16595044732095,
+        "mac": "",
+        "nombre": "SHERLINE 1",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.792681528343106,
+        "lng": -76.16585925221445,
+        "mac": "",
+        "nombre": "RAXE 5",
+        "tipo": "LAN"
+      },
+      {
+        "estado": "Operativo",
+        "hostname": "",
+        "ip": "",
+        "lat": -13.792956341630939,
+        "lng": -76.16581767797472,
+        "mac": "",
+        "nombre": "ROBOMASTER 1",
+        "tipo": "LAN"
+      }
+    ]
+  }
+]
