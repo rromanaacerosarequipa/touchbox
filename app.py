@@ -1,104 +1,117 @@
 import streamlit as st
 import json
 from pathlib import Path
-from datetime import datetime
-import pandas as pd
-import io
-
-# Para mapa
 import folium
+from folium.features import DivIcon
 from streamlit_folium import st_folium
 
+# =========================
 # CONFIG
-st.set_page_config(page_title="TouchBox", layout="wide")
+# =========================
+st.set_page_config(page_title="TouchBox PRO", layout="wide")
 
-# RUTAS
 BASE_DIR = Path(__file__).resolve().parent
 ZONAS_FILE = BASE_DIR / "zonas.json"
-MARKERS_FILE = BASE_DIR / "marcadores.json"
-CIRCLES_FILE = BASE_DIR / "circulos.json"
 
-# =========================
-# FUNCIONES JSON
-# =========================
 def read_json(path):
     if not path.exists():
         path.write_text("[]", encoding="utf-8")
     return json.loads(path.read_text(encoding="utf-8") or "[]")
 
-def write_json(path, data):
-    path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+zonas = read_json(ZONAS_FILE)
 
 # =========================
-# CARGAR DATA
+# ESTILO (🔥 etiquetas tipo tu sistema)
 # =========================
-zonas = read_json(ZONAS_FILE)
-markers = read_json(MARKERS_FILE)
-circles = read_json(CIRCLES_FILE)
+def etiqueta_html(nombre, estado):
+    color = "#22c55e" if estado == "ok" else "#ef4444"
+
+    return f"""
+    <div style="
+        background: #111827;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 8px;
+        font-size: 11px;
+        font-weight: bold;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        border-left: 4px solid {color};
+        white-space: nowrap;
+    ">
+        {nombre}
+    </div>
+    """
 
 # =========================
 # UI
 # =========================
-st.title("📡 TouchBox - Mapa Inteligente")
+st.title("📡 TouchBox - Vista Operativa")
 
-col1, col2 = st.columns([3,1])
+col1, col2 = st.columns([4,1])
 
 # =========================
 # MAPA
 # =========================
 with col1:
-    mapa = folium.Map(location=[-12.0, -77.0], zoom_start=19)
+    mapa = folium.Map(
+        location=[-12.0, -77.0],
+        zoom_start=19,
+        tiles="CartoDB dark_matter"  # 🔥 estilo oscuro PRO
+    )
 
-    # 🔵 ZONAS (polígonos)
+    total = 0
+    ok = 0
+
     for z in zonas:
         coords = z.get("coords", [])
+
+        # 🔷 ZONA
         if coords:
             folium.Polygon(
                 locations=coords,
-                color="blue",
+                color="#3b82f6",
                 fill=True,
-                fill_opacity=0.2,
-                tooltip=z.get("nombre", "Zona")
+                fill_opacity=0.15
             ).add_to(mapa)
 
-        # 🔹 TAGS dentro de zonas
+        # 🔹 TAGS
         for t in z.get("tags", []):
-            color = "green" if t.get("estado") == "ok" else "red"
+            lat = t.get("lat")
+            lng = t.get("lng")
+            nombre = t.get("nombre")
+            estado = t.get("estado", "ok")
 
-            folium.Marker(
-                location=[t.get("lat"), t.get("lng")],
-                popup=f"{t.get('nombre')} ({t.get('estado')})",
-                icon=folium.Icon(color=color)
+            if not lat or not lng:
+                continue
+
+            total += 1
+            if estado == "ok":
+                ok += 1
+
+            # 🔥 ICONO BASE (tipo equipo)
+            folium.CircleMarker(
+                location=[lat, lng],
+                radius=6,
+                color="#22c55e" if estado == "ok" else "#ef4444",
+                fill=True
             ).add_to(mapa)
 
-    # 🔴 MARKERS independientes
-    for m in markers:
-        folium.Marker(
-            location=[m.get("lat"), m.get("lng")],
-            popup=m.get("nombre"),
-            icon=folium.Icon(color="blue")
-        ).add_to(mapa)
+            # 🔥 ETIQUETA FLOTANTE (CLAVE)
+            folium.Marker(
+                location=[lat, lng],
+                icon=DivIcon(
+                    html=etiqueta_html(nombre, estado)
+                )
+            ).add_to(mapa)
 
-    # 🟢 CÍRCULOS
-    for c in circles:
-        folium.Circle(
-            location=[c.get("lat"), c.get("lng")],
-            radius=c.get("radio", 10),
-            color="green",
-            fill=True,
-            fill_opacity=0.2
-        ).add_to(mapa)
-
-    st_folium(mapa, width=1000, height=600)
+    st_folium(mapa, width=1200, height=650)
 
 # =========================
-# PANEL LATERAL
+# PANEL DERECHO (igual al tuyo)
 # =========================
 with col2:
     st.subheader("📊 Estado")
 
-    total = sum(len(z.get("tags", [])) for z in zonas)
-    ok = sum(1 for z in zonas for t in z.get("tags", []) if t.get("estado") == "ok")
     error = total - ok
 
     st.metric("Total", total)
@@ -107,35 +120,6 @@ with col2:
 
     st.divider()
 
-    # =========================
-    # EXPORTAR EXCEL
-    # =========================
-    def flatten():
-        filas = []
-        for z in zonas:
-            for t in z.get("tags", []):
-                filas.append({
-                    "Nombre": t.get("nombre"),
-                    "Hostname": t.get("hostname"),
-                    "IP": t.get("ip"),
-                    "MAC": t.get("mac"),
-                    "Estado": t.get("estado"),
-                    "Zona": z.get("nombre"),
-                })
-        return pd.DataFrame(filas)
-
-    df = flatten()
-
-    st.download_button(
-        "📥 Exportar Excel",
-        data=df.to_csv(index=False).encode("utf-8"),
-        file_name=f"reporte_{datetime.now().strftime('%Y%m%d_%H%M')}.csv",
-        mime="text/csv"
-    )
-
-    st.download_button(
-        "📄 Exportar JSON",
-        data=json.dumps(zonas, indent=2).encode("utf-8"),
-        file_name="zonas.json",
-        mime="application/json"
-    )
+    st.button("💾 Guardar")
+    st.button("📥 Exportar Excel")
+    st.button("📄 Exportar PDF")
